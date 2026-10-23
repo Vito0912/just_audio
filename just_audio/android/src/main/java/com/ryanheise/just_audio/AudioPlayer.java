@@ -437,6 +437,10 @@ public class AudioPlayer implements MethodCallHandler, Player.Listener, Metadata
 
     @Override
     public void onPlayerError(PlaybackException error) {
+        if (player != null) {
+            updatePosition();
+        }
+
         if (error instanceof ExoPlaybackException) {
             final ExoPlaybackException exoError = (ExoPlaybackException)error;
             switch (exoError.type) {
